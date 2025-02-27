@@ -2,7 +2,6 @@
 
 This project is an interactive portfolio built with React for the client-side and Node.js for the server-side. It serves as a platform for showcasing skills, projects, and experiences to potential employers.
 
-
 ## Setup Instructions
 
 1. Clone the repository:
@@ -15,12 +14,17 @@ This project is an interactive portfolio built with React for the client-side an
    cd interactive-portfolio
    ```
 
-3. Install dependencies 
+3. Install dependencies:
    ```
    npm install
    ```
 
-4. Start the portfolio:
+4. Install the required font:
    ```
-   npm start
+   npm install typeface-roboto
+   ```
+
+5. Start the portfolio:
+   ```
+   npm run dev
    ```
