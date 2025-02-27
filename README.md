@@ -21,10 +21,13 @@ This project is an interactive portfolio built with React for the client-side an
 
 4. Install the required font:
    ```
+<<<<<<< HEAD
    npm install typeface-roboto
    ```
 
 5. Start the portfolio:
    ```
+=======
+>>>>>>> f6a2c055e24f38ad3df1953780834864a15f2be0
    npm run dev
    ```
