@@ -78,6 +78,64 @@ document.addEventListener('keydown', (e) => {
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 });
 
+// Particle map
+const canvas = document.createElement('canvas');
+canvas.id = 'particle-canvas';
+document.body.appendChild(canvas);
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = document.body.scrollHeight; // Ensure particles cover the entire page height
+
+const particles = [];
+const particleCount = 100;
+
+for (let i = 0; i < particleCount; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 5 + 1,
+    speedX: Math.random() * 3 - 1.5,
+    speedY: Math.random() * 3 - 1.5
+  });
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(particle => {
+    particle.x += particle.speedX;
+    particle.y += particle.speedY;
+
+    if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
+    if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
+
+    ctx.beginPath();
+    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fillStyle = '#EFB036'; // Yellow particles
+    ctx.fill();
+  });
+  requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+
+document.addEventListener('mousemove', (e) => {
+  particles.forEach(particle => {
+    const dx = e.clientX - particle.x;
+    const dy = e.clientY - particle.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    const forceDirectionX = dx / distance;
+    const forceDirectionY = dy / distance;
+    const maxDistance = 100;
+    const force = (maxDistance - distance) / maxDistance;
+
+    if (distance < maxDistance) {
+      particle.speedX -= forceDirectionX * force;
+      particle.speedY -= forceDirectionY * force;
+    }
+  });
+});
+
 
 
 
