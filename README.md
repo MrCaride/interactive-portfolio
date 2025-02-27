@@ -22,5 +22,5 @@ This project is an interactive portfolio built with React for the client-side an
 
 4. Start the portfolio:
    ```
-   npm start
+   npm run dev
    ```
